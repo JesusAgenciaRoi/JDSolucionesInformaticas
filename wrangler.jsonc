@@ -1,0 +1,10 @@
+{
+  // Sitio estático servido por Cloudflare (Workers con assets).
+  // "single-page-application" hace que /proyectos/... y /admin carguen index.html al recargar.
+  "name": "jdsolucionesinformaticas",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}

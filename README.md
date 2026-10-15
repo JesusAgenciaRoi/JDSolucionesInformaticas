@@ -61,18 +61,18 @@ Seguridad:
 | `admins` | Cada uno ve si es admin | Solo desde el SQL Editor |
 | Storage `portfolio` | Público por URL | Solo admin |
 
-## 4. Publicar en Cloudflare Pages
+## 4. Publicar en Cloudflare
 
-1. Subí esta carpeta a un repositorio de GitHub.
-2. Cloudflare → Workers & Pages → *Create* → Pages → conectá el repositorio.
-3. Configuración de build:
-   - **Framework preset:** Vite (o ninguno)
+El proyecto se publica como Worker con archivos estáticos (`wrangler.jsonc`).
+
+1. Cloudflare → Workers & Pages → *Create* → *Import a repository* → elegí `JDSolucionesInformaticas`.
+2. Configuración:
    - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Variables de entorno:** `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` y `NODE_VERSION=22`
-4. Cuando tengas el dominio (por ejemplo `jdsoluciones.uy`), agregalo en *Custom domains*.
+   - **Deploy command:** `npx wrangler deploy`
+3. En *Settings → Build → Variables and secrets* (variables **de build**, porque Vite las mete en el sitio al compilar): `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` y `NODE_VERSION=22`.
+4. Cuando tengas el dominio (por ejemplo `jdsoluciones.uy`), agregalo en *Settings → Domains & Routes*.
 
-`public/_redirects` hace que las rutas como `/proyectos/team-valkyria` o `/admin` funcionen al recargar.
+`"not_found_handling": "single-page-application"` en `wrangler.jsonc` hace que las rutas como `/proyectos/team-valkyria` o `/admin` funcionen al recargar.
 
 ## 5. Personalizar
 
