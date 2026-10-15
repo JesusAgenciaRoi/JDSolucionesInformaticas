@@ -3,6 +3,10 @@
   // "single-page-application" hace que /proyectos/... y /admin carguen index.html al recargar.
   "name": "jdsolucionesinformaticas",
   "compatibility_date": "2026-09-01",
+  // Compila el sitio antes de publicar, aunque el panel de Cloudflare no tenga "Build command".
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
