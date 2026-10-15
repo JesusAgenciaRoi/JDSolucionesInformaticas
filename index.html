@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>JD Soluciones Informáticas · Software a medida en Uruguay</title>
+    <meta name="description" content="Webs, apps a medida, dashboards, integraciones y soporte para negocios en Uruguay. Contame tu proyecto." />
+    <meta name="theme-color" content="#0b1026" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#eef1f4" media="(prefers-color-scheme: light)" />
+    <meta property="og:title" content="JD Soluciones Informáticas" />
+    <meta property="og:description" content="Webs, apps a medida, dashboards, integraciones y soporte, desde Uruguay." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" />
+    <script>
+      // Aplica el tema guardado antes de pintar, para que no parpadee
+      try {
+        var t = localStorage.getItem('jd-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

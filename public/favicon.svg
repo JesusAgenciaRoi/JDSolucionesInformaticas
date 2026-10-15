@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64">
+  <style>
+    .s{stroke:#0e2a3b}.n{fill:#f5b700}
+    @media (prefers-color-scheme: dark){.s{stroke:#4c6fff}.n{fill:#6ee7f9}}
+  </style>
+  <path class="s" d="M8 10H44M26 10V42Q26 54 14 54Q8 54 6 49M44 10V54H52Q70 54 70 32Q70 10 52 10H44" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="n" cx="8" cy="10" r="6"/><circle class="n" cx="26" cy="10" r="6"/><circle class="n" cx="44" cy="10" r="6"/><circle class="n" cx="44" cy="54" r="6"/>
+</svg>
