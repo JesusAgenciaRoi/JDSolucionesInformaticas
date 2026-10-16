@@ -7,10 +7,11 @@ import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
 
 const Admin = lazy(() => import('./pages/Admin'));
+const BriefPage = lazy(() => import('./pages/BriefPage'));
 
 export default function App() {
   const { pathname } = useLocation();
-  const isAdmin = pathname.startsWith('/admin');
+  const isAdmin = pathname.startsWith('/admin') || pathname.startsWith('/cuestionario');
   return (
     <>
       {!isAdmin && <Nav />}
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/proyectos/:slug" element={<ProjectPage />} />
             <Route path="/admin/*" element={<Admin />} />
+            <Route path="/cuestionario/:token" element={<BriefPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -88,20 +88,30 @@ Entrá a `/admin`, iniciá sesión y tocá **Nuevo proyecto**. Completá título
 
 En la descripción, una línea que empieza con `## ` es un subtítulo y una con `- ` es un punto de lista.
 
-## 7. Cotizador
+## 7. Cuestionario y cotizador
 
-En `/admin` → **Cotizador**. Mientras el cliente te cuenta el proyecto:
+### Cuestionario para el cliente
+Cuando un cliente te contacta, en `/admin` → **Cotizador** creás un cuestionario con su nombre (o desde **Consultas** → *Enviar cuestionario*). Se genera un enlace único (`/cuestionario/<código>`) y un mensaje listo para mandar por WhatsApp o correo.
 
-1. Escribí lo que dice **con sus palabras** en el primer cuadro. El sistema detecta lo que está pidiendo ("sacar turno", "cobrar una seña", "que me llegue un aviso por WhatsApp"…) y te propone agregarlo con un clic.
-2. Completá el resto de las preguntas, que están escritas como se las harías al cliente.
-3. A la derecha ves en vivo tres precios en USD: **Piso** (no bajes de acá), **Recomendado** y **Techo**, más las horas, el plazo según tus horas libres por semana, cuánto te queda por hora y el mantenimiento mensual sugerido.
-4. **Propuesta para el cliente:** texto listo para copiar y pegar en WhatsApp o mail, con alcance, precio, plazo y forma de pago.
-5. **Guardar cotización:** queda en el historial con su estado (borrador, enviada, aceptada, rechazada).
-6. Cuando terminás un proyecto, cargá las **horas reales**. El cotizador compara lo estimado con lo real y te dice si estás cobrando de menos.
+- El cliente lo completa desde el celular, por secciones, con barra de progreso.
+- **Se adapta a sus respuestas:** si solo quiere una web de presentación, se saltean las preguntas de datos y seguridad; si vende o recibe reservas, aparecen preguntas de entrega y cobro; si quiere mejorar algo existente, pregunta qué tiene y si tiene los accesos; los "¿Cuáles?" se abren solo al marcar "Sí".
+- **Se guarda solo** mientras escribe: puede seguir otro día con el mismo enlace. Al enviarlo ya no se puede modificar.
+- El enlace es secreto y solo da acceso a ese cuestionario (funciones `get_brief` y `save_brief`).
+- Las preguntas están en `src/lib/brief.ts`: podés cambiar textos u opciones ahí.
 
-**Mis tarifas y supuestos:** piso, objetivo y alta por hora, mínimo por proyecto, horas por semana y % de gestión y pruebas. Los valores sugeridos (USD 15 / 22 / 32 la hora) están por debajo de la referencia de un freelance en Uruguay (USD 25–45), pensados para conseguir los primeros clientes. Subilos a medida que crezca tu portafolio.
+### Cotizador
+En la lista de cuestionarios tocás **Cotizar**, o **Completarlo yo en una llamada** si preferís hacerlo hablando.
 
-Tablas: `supabase/migrations/20261016120000_quotes.sql` (solo el administrador puede leerlas).
+1. Las respuestas se traducen en **bloques de trabajo** con horas: cuentas de usuario, permisos, información a gestionar, pedidos, cobros, avisos por canal, conexiones, diseño, migración de datos, seguridad, etc. Cada bloque dice de qué respuesta sale.
+2. Podés **apagar bloques, cambiar sus horas o agregar ítems** que el cuestionario no cubre.
+3. Se suman reuniones y gestión, pruebas, y un margen según cuántas respuestas quedaron en "no lo sé".
+4. A la derecha: **Piso / Recomendado / Techo** en USD, plazo según tus horas por semana, mantenimiento mensual, el presupuesto que indicó el cliente y avisos (presupuesto por debajo de tu piso, urgencia, WhatsApp, proyecto grande…).
+5. **Propuesta** lista para copiar, con el alcance en lenguaje del cliente, precio, plazo y forma de pago.
+6. **Guardar cotización** y, al terminar el proyecto, cargar las **horas reales** para ver si estás estimando bien.
+
+**Mis tarifas y supuestos:** valores sugeridos USD 15 / 22 / 32 la hora (piso, objetivo, alta), por debajo de la referencia de un freelance en Uruguay (USD 25–45) para conseguir los primeros clientes.
+
+Tablas y funciones: `supabase/migrations/20261016120000_quotes.sql`.
 
 ## 8. Pendiente
 

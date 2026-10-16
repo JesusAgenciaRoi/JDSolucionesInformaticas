@@ -5,7 +5,7 @@ import { ArrowLeft, ImagePlus, LogOut, Pencil, Plus, Trash2, X } from 'lucide-re
 import { supabase, PORTFOLIO_BUCKET } from '../lib/supabase';
 import { slugify, type Project } from '../lib/projects';
 import { Logo } from '../components/Logo';
-import Quoter from './Quoter';
+import Quoter, { type LeadLite } from './Quoter';
 
 type Lead = { id: string; name: string; email: string; phone: string | null; service: string; message: string; status: string; created_at: string };
 type Draft = Omit<Project, 'id'> & { id?: string; tagsText: string };
@@ -151,6 +151,7 @@ function ProjectForm({ initial, onDone }: { initial: Draft; onDone: () => void }
 
 function Panel({ session }: { session: Session }) {
   const [tab, setTab] = useState<'projects' | 'leads' | 'quotes'>('projects');
+  const [presetLead, setPresetLead] = useState<LeadLite | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [editing, setEditing] = useState<Draft | null>(null);
@@ -222,7 +223,7 @@ function Panel({ session }: { session: Session }) {
         </>
       )}
 
-      {tab === 'quotes' && <Quoter leads={leads} />}
+      {tab === 'quotes' && <Quoter leads={leads} presetLead={presetLead} />}
 
       {tab === 'leads' && (
         <ul className="admin-leads">
@@ -239,6 +240,7 @@ function Panel({ session }: { session: Session }) {
                 <span className="mono select">{l.email}</span>
                 {l.phone && <span className="mono select">{l.phone}</span>}
                 {l.phone && <a className="link" href={`https://wa.me/${l.phone.replace(/\D/g, '').replace(/^0/, '598')}`} target="_blank" rel="noreferrer">WhatsApp</a>}
+                <button type="button" className="btn btn-ghost sm" onClick={() => { setPresetLead({ ...l }); setTab('quotes'); }}>Enviar cuestionario</button>
                 <select aria-label="Estado de la consulta" value={l.status} onChange={(e) => setStatus(l.id, e.target.value)}>
                   <option value="nuevo">Nuevo</option>
                   <option value="contactado">Contactado</option>
