@@ -67,8 +67,10 @@ El proyecto se publica como Worker con archivos estáticos (`wrangler.jsonc`).
 
 1. Cloudflare → Workers & Pages → *Create* → *Import a repository* → elegí `JDSolucionesInformaticas`.
 2. Configuración:
-   - **Build command:** `npm run build`
+   - **Build command:** `npm run build` (obligatorio: wrangler publica la carpeta `dist` ya compilada)
    - **Deploy command:** `npx wrangler deploy`
+
+   Para publicar a mano desde tu PC: `npm run deploy` (compila y publica).
 3. En *Settings → Build → Variables and secrets* (variables **de build**, porque Vite las mete en el sitio al compilar): `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` y `NODE_VERSION=22`.
 4. Cuando tengas el dominio (por ejemplo `jdsoluciones.uy`), agregalo en *Settings → Domains & Routes*.
 

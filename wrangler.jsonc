@@ -1,12 +1,9 @@
 {
   // Sitio estático servido por Cloudflare (Workers con assets).
-  // "single-page-application" hace que /proyectos/... y /admin carguen index.html al recargar.
+  // "single-page-application" hace que /proyectos/..., /admin y /cuestionario/... carguen index.html al recargar.
+  // Antes de publicar hay que compilar (npm run build): usá "npm run deploy", que hace las dos cosas.
   "name": "jdsolucionesinformaticas",
   "compatibility_date": "2026-09-01",
-  // Compila el sitio antes de publicar, aunque el panel de Cloudflare no tenga "Build command".
-  "build": {
-    "command": "npm run build"
-  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
