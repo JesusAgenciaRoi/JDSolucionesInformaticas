@@ -6,7 +6,7 @@ Sitio de servicios y portafolio de JD Soluciones: webs, apps a medida, dashboard
 - **Frontend:** React + TypeScript + Vite. Sitio estático para Cloudflare Pages.
 - **Backend:** Supabase (proyectos del portafolio, consultas del formulario y fotos).
 
-Funciona también **sin Supabase**: muestra el proyecto de Team Valkyria desde `src/lib/projects.ts` y el formulario ofrece mandar la consulta por correo.
+La conexión con Supabase viene incluida en `src/lib/supabase.ts` (la URL y la clave publicable son públicas por diseño; lo que protege los datos es la seguridad por filas). Las variables `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` son opcionales y la pisan.
 
 ---
 

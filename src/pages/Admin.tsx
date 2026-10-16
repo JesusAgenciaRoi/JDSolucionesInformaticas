@@ -260,6 +260,10 @@ export default function Admin() {
 
   useEffect(() => {
     document.title = 'Panel · JD Soluciones';
+    const robots = document.createElement('meta');
+    robots.name = 'robots';
+    robots.content = 'noindex, nofollow';
+    document.head.appendChild(robots);
     if (!supabase) { setSession(null); return; }
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
@@ -276,8 +280,8 @@ export default function Admin() {
       <div className="container admin-body">
         {!supabase ? (
           <div className="admin-empty">
-            <h1>Falta conectar Supabase</h1>
-            <p>Creá el archivo <code>.env</code> con <code>VITE_SUPABASE_URL</code> y <code>VITE_SUPABASE_ANON_KEY</code> (ver README) y volvé a compilar.</p>
+            <h1>Panel no disponible</h1>
+            <p>El panel está desactivado en esta versión del sitio.</p>
           </div>
         ) : session === undefined ? (
           <p className="muted">Cargando…</p>

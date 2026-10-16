@@ -26,6 +26,10 @@ export default function BriefPage() {
 
   useEffect(() => {
     document.title = 'Cuestionario · JD Soluciones';
+    const robots = document.createElement('meta');
+    robots.name = 'robots';
+    robots.content = 'noindex, nofollow';
+    document.head.appendChild(robots);
     if (!supabase) { setState('notfound'); return; }
     supabase.rpc('get_brief', { p_token: token }).then(({ data, error }) => {
       const row = Array.isArray(data) ? data[0] : null;
