@@ -88,7 +88,22 @@ Entrá a `/admin`, iniciá sesión y tocá **Nuevo proyecto**. Completá título
 
 En la descripción, una línea que empieza con `## ` es un subtítulo y una con `- ` es un punto de lista.
 
-## 7. Pendiente
+## 7. Cotizador
+
+En `/admin` → **Cotizador**. Mientras el cliente te cuenta el proyecto:
+
+1. Escribí lo que dice **con sus palabras** en el primer cuadro. El sistema detecta lo que está pidiendo ("sacar turno", "cobrar una seña", "que me llegue un aviso por WhatsApp"…) y te propone agregarlo con un clic.
+2. Completá el resto de las preguntas, que están escritas como se las harías al cliente.
+3. A la derecha ves en vivo tres precios en USD: **Piso** (no bajes de acá), **Recomendado** y **Techo**, más las horas, el plazo según tus horas libres por semana, cuánto te queda por hora y el mantenimiento mensual sugerido.
+4. **Propuesta para el cliente:** texto listo para copiar y pegar en WhatsApp o mail, con alcance, precio, plazo y forma de pago.
+5. **Guardar cotización:** queda en el historial con su estado (borrador, enviada, aceptada, rechazada).
+6. Cuando terminás un proyecto, cargá las **horas reales**. El cotizador compara lo estimado con lo real y te dice si estás cobrando de menos.
+
+**Mis tarifas y supuestos:** piso, objetivo y alta por hora, mínimo por proyecto, horas por semana y % de gestión y pruebas. Los valores sugeridos (USD 15 / 22 / 32 la hora) están por debajo de la referencia de un freelance en Uruguay (USD 25–45), pensados para conseguir los primeros clientes. Subilos a medida que crezca tu portafolio.
+
+Tablas: `supabase/migrations/20261016120000_quotes.sql` (solo el administrador puede leerlas).
+
+## 8. Pendiente
 
 - **Aviso de consultas nuevas por correo o push:** hoy las consultas quedan en `/admin` → Consultas. El siguiente paso es una Edge Function que te mande un mail (con Resend) y una notificación push cada vez que entra una.
 - **Capturas de Team Valkyria:** subilas desde el panel para reemplazar el logo como portada.
