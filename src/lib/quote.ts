@@ -39,6 +39,7 @@ export type Settings = {
   min_project: number;
   overhead_pct: number;
   qa_pct: number;
+  revision_rounds: number;
 };
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -49,6 +50,7 @@ export const DEFAULT_SETTINGS: Settings = {
   min_project: 150,
   overhead_pct: 15,
   qa_pct: 10,
+  revision_rounds: 2,
 };
 
 export const EMPTY_ADJUST: Adjust = { clientType: 'pyme', off: [], hours: {}, entities: null, extras: [] };
@@ -308,7 +310,7 @@ export function estimate(a: BriefAnswers, adj: Adjust, s: Settings): Quote {
 const usd = (n: number) => `USD ${Math.round(n).toLocaleString('es-UY')}`;
 
 /** Propuesta lista para WhatsApp o mail, en el idioma del cliente. */
-export function proposalText(a: BriefAnswers, clientName: string, q: Quote, price: number): string {
+export function proposalText(a: BriefAnswers, clientName: string, q: Quote, price: number, rounds = 2): string {
   const first = clientName.trim().split(' ')[0];
   const project = str(a, 'q1') || 'tu proyecto';
   const plazo = q.weeks[0] === q.weeks[1] ? `${q.weeks[0]} semana(s)` : `${q.weeks[0]} a ${q.weeks[1]} semanas`;
@@ -325,6 +327,13 @@ export function proposalText(a: BriefAnswers, clientName: string, q: Quote, pric
     ...q.payments.map((p) => `• ${p.pct}% ${p.label}: ${usd(roundPrice((price * p.pct) / 100))}`),
   ];
   if (q.monthly) lines.push('', `Mantenimiento opcional después de publicar: ${usd(q.monthly)} por mes (hosting, respaldos, soporte y pequeños cambios).`);
-  lines.push('', 'La propuesta vale por 15 días. Si quieres ajustar algo, coordinamos una llamada.', '', 'JD Soluciones Informáticas');
+  lines.push(
+    '',
+    `El precio cubre el alcance detallado arriba e incluye ${rounds} ronda${rounds === 1 ? '' : 's'} de ajustes por etapa. Los cambios o funciones nuevas se cotizan aparte y se hacen solo con tu aprobación. Vas a tener un panel para seguir el avance, pedir cambios y aprobar cada etapa.`,
+    '',
+    'La propuesta vale por 15 días. Si quieres ajustar algo, coordinamos una llamada.',
+    '',
+    'JD Soluciones Informáticas',
+  );
   return lines.join('\n');
 }

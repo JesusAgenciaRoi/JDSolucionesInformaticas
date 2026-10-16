@@ -115,7 +115,27 @@ En la lista de cuestionarios tocás **Cotizar**, o **Completarlo yo en una llama
 
 Tablas y funciones: `supabase/migrations/20261016120000_quotes.sql`.
 
-## 8. Pendiente
+## 8. Seguimiento del proyecto y control de cambios
+
+Cuando el cliente acepta, en `/admin` → **Seguimiento** creás el seguimiento desde la cotización guardada (o a mano). Se arma solo con el alcance, las etapas, los pagos y los pendientes del cliente según el cuestionario. Le mandás el enlace (`/proyecto/<código>`) con *Copiar mensaje con enlace* o *WhatsApp*.
+
+**Lo que ve el cliente:** avance, etapas, novedades, versión de prueba, lo que falta de su lado (lo puede tildar), el **alcance acordado en solo lectura**, los pagos y sus pedidos de cambio.
+
+**Control de cambios:**
+1. El cliente pide un cambio desde su panel. Te aparece en **Seguimiento** con el aviso "cambios nuevos".
+2. Lo clasificás:
+   - **Incluido:** ajuste dentro de lo acordado. Usa una ronda de ajustes de la etapa actual; cuando no quedan rondas, el panel te avisa que corresponde cobrarlo.
+   - **Es adicional:** ponés las horas y el sistema calcula precio (con tu tarifa) y días extra. Al cliente le llega para **aprobar o rechazar**. Nada adicional se hace sin su aprobación, y queda registrado con fecha.
+   - **Descartar.**
+3. Los adicionales aprobados se suman al total del proyecto.
+
+**Etapas:** cuando terminás una, la ponés en *Esperando aprobación* y el cliente la aprueba desde su panel. Cambiar algo de una etapa aprobada es adicional.
+
+**Rondas de ajustes por etapa:** se configuran en *Mis tarifas y supuestos* (por defecto 2) y aparecen en la propuesta y en el panel del cliente.
+
+Tablas y funciones: `supabase/migrations/20261016130000_engagements.sql`.
+
+## 9. Pendiente
 
 - **Aviso de consultas nuevas por correo o push:** hoy las consultas quedan en `/admin` → Consultas. El siguiente paso es una Edge Function que te mande un mail (con Resend) y una notificación push cada vez que entra una.
 - **Capturas de Team Valkyria:** subilas desde el panel para reemplazar el logo como portada.

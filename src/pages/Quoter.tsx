@@ -67,7 +67,7 @@ export default function Quoter({ leads, presetLead }: { leads: LeadLite[]; prese
 
   const q = useMemo(() => estimate(answers, adj, s), [answers, adj, s]);
   const price = typeof final === 'number' && final > 0 ? final : q.target;
-  const text = useMemo(() => proposalText(answers, clientName, q, price), [answers, clientName, q, price]);
+  const text = useMemo(() => proposalText(answers, clientName, q, price, s.revision_rounds), [answers, clientName, q, price, s.revision_rounds]);
   const sections = useMemo(() => visibleSections(answers), [answers]);
 
   const load = useCallback(async () => {
@@ -84,7 +84,7 @@ export default function Quoter({ leads, presetLead }: { leads: LeadLite[]; prese
       setS({
         floor_rate: n(st.data.floor_rate, 15), target_rate: n(st.data.target_rate, 22), high_rate: n(st.data.high_rate, 32),
         hours_per_week: n(st.data.hours_per_week, 15), min_project: n(st.data.min_project, 150),
-        overhead_pct: n(st.data.overhead_pct, 15), qa_pct: n(st.data.qa_pct, 10),
+        overhead_pct: n(st.data.overhead_pct, 15), qa_pct: n(st.data.qa_pct, 10), revision_rounds: n(st.data.revision_rounds, 2),
       });
     }
     setBriefs((bs.data ?? []) as Brief[]);
@@ -384,6 +384,7 @@ export default function Quoter({ leads, presetLead }: { leads: LeadLite[]; prese
                 ['hours_per_week', 'Horas por semana disponibles', 'Para calcular el plazo'],
                 ['overhead_pct', 'Reuniones y gestión (%)', 'Charlas, mails, coordinación'],
                 ['qa_pct', 'Pruebas y ajustes (%)', 'Probar, corregir, publicar'],
+                ['revision_rounds', 'Rondas de ajustes por etapa', 'Incluidas en el precio; después, adicional'],
               ] as [keyof Settings, string, string][]).map(([k, label, hint]) => (
                 <label key={k} className="field"><span>{label}</span>
                   <input id={`qs-${k}`} type="number" min={0} step={1} value={s[k]} onChange={(e) => setS((p) => ({ ...p, [k]: Number(e.target.value) || 0 }))} />

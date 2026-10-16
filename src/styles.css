@@ -611,3 +611,72 @@ input:focus, select:focus, textarea:focus { border-color: var(--brand); box-shad
 .quotes-list .inline-num > input:not([type='checkbox']) { width: 70px; }
 .blocks li { flex-wrap: nowrap; }
 @media (max-width: 560px) { .blocks li { flex-wrap: wrap; } }
+
+/* ---------- Seguimiento: panel del cliente ---------- */
+.eng-main { gap: 16px; }
+.eng-hero { display: grid; gap: 14px; padding: 8px 0 6px; animation: rise 0.6s var(--ease) both; }
+.eng-hero h1 { font-size: clamp(30px, 6vw, 46px); }
+.eng-hero .btn { justify-self: start; }
+.eng-progress { display: flex; align-items: center; gap: 14px; }
+.eng-bar { flex: 1; height: 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; }
+.eng-bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--brand), var(--hot)); transition: width 1s var(--ease); animation: grow 1.2s var(--ease) both; }
+@keyframes grow { from { width: 0 !important; } }
+.eng-progress b { font-size: 20px; }
+.eng-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: clamp(18px, 3.5vw, 28px); display: grid; gap: 14px; animation: rise 0.5s var(--ease) both; }
+.eng-card h2 { font-size: 20px; font-family: var(--body); letter-spacing: 0; display: flex; align-items: center; gap: 8px; }
+.eng-action { border-color: color-mix(in srgb, var(--hot) 60%, var(--line)); background: color-mix(in srgb, var(--hot) 10%, var(--surface)); }
+.eng-action ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.eng-stages { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; }
+.eng-stages li { display: flex; gap: 14px; padding-bottom: 18px; position: relative; }
+.eng-stages li:not(:last-child)::before { content: ''; position: absolute; left: 13px; top: 28px; bottom: 0; width: 2px; background: var(--line); }
+.eng-stages li.st-aprobada:not(:last-child)::before { background: var(--brand); }
+.eng-node { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; flex: none; border: 2px solid var(--line); background: var(--surface); color: var(--muted); z-index: 1; }
+.st-aprobada .eng-node { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-fg); }
+.st-en_curso .eng-node { border-color: var(--brand); color: var(--brand); animation: pulse 2s ease-in-out infinite; }
+.st-revision .eng-node { border-color: var(--hot); color: var(--hot); }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--brand) 20%, transparent); } }
+.eng-stage-main { display: grid; gap: 4px; justify-items: start; min-width: 0; }
+.eng-stage-main small { color: var(--muted); font-size: 13px; }
+.eng-confirm { display: grid; gap: 8px; justify-items: start; padding: 12px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--line); font-size: 14px; }
+.eng-confirm .btn { display: inline-flex; }
+.eng-updates { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.eng-updates li { display: grid; gap: 4px; padding-left: 14px; border-left: 3px solid var(--brand); position: relative; }
+.eng-updates li .icon-btn { position: absolute; right: 0; top: 0; }
+.eng-updates p { overflow-wrap: anywhere; }
+.eng-request { display: grid; gap: 10px; }
+.eng-request .btn { justify-self: start; }
+.eng-changes { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.eng-changes li { display: grid; gap: 8px; padding: 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); border-left: 4px solid var(--line); }
+.eng-changes li.ch-nuevo { border-left-color: var(--brand); }
+.eng-changes li.ch-adicional { border-left-color: var(--hot); background: color-mix(in srgb, var(--hot) 8%, var(--surface-2)); }
+.eng-changes li.ch-aprobado, .eng-changes li.ch-incluido { border-left-color: var(--ok); }
+.eng-changes li.ch-rechazado { opacity: 0.7; }
+.eng-changes p { overflow-wrap: anywhere; white-space: pre-wrap; }
+.ch-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ch-note { font-size: 14px; color: var(--muted); font-style: italic; }
+.ch-price { font-size: 15px; }
+.ch-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.ch-quote { display: grid; gap: 10px; }
+.eng-scope { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.eng-scope li { display: flex; gap: 10px; }
+.eng-scope li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); flex: none; margin-top: 9px; }
+.eng-pay { width: 100%; border-collapse: collapse; font-size: 15px; }
+.eng-pay td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.eng-pay td:last-child { text-align: right; }
+.eng-pay tr.total td { font-weight: 700; border-bottom: 0; }
+.eng-payments { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.eng-payments li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); }
+.eng-payments li small { grid-column: 2 / -1; color: var(--muted); font-size: 12px; }
+.eng-payments li.paid .toggle-box { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-fg); }
+.eng-foot { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- Seguimiento: tu panel ---------- */
+.admin-list li.sel { border-color: var(--brand); }
+.seg-title { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.seg-title-input { font-family: var(--display); font-size: 22px !important; font-weight: 700; background: transparent !important; border-color: transparent !important; padding: 4px 6px !important; }
+.seg-title-input:hover, .seg-title-input:focus { border-color: var(--line) !important; }
+.stage-move { display: grid; gap: 2px; }
+.stage-move .icon-btn { width: 24px; height: 20px; border-radius: 6px; }
+.blocks li > input.stage-title:not([type='checkbox']) { flex: 1; min-width: 120px; padding: 6px 8px; }
+.blocks li > select { width: auto; padding: 6px 8px; }
+.seg-update { display: grid; gap: 8px; }

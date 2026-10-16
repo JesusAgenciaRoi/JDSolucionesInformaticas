@@ -6,6 +6,7 @@ import { supabase, PORTFOLIO_BUCKET } from '../lib/supabase';
 import { slugify, type Project } from '../lib/projects';
 import { Logo } from '../components/Logo';
 import Quoter, { type LeadLite } from './Quoter';
+import Tracking from './Tracking';
 
 type Lead = { id: string; name: string; email: string; phone: string | null; service: string; message: string; status: string; created_at: string };
 type Draft = Omit<Project, 'id'> & { id?: string; tagsText: string };
@@ -150,7 +151,8 @@ function ProjectForm({ initial, onDone }: { initial: Draft; onDone: () => void }
 }
 
 function Panel({ session }: { session: Session }) {
-  const [tab, setTab] = useState<'projects' | 'leads' | 'quotes'>('projects');
+  const [tab, setTab] = useState<'projects' | 'leads' | 'quotes' | 'tracking'>('projects');
+  const [pendingChanges, setPendingChanges] = useState(0);
   const [presetLead, setPresetLead] = useState<LeadLite | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -192,6 +194,9 @@ function Panel({ session }: { session: Session }) {
           Consultas {newCount > 0 && <span className="badge">{newCount} nuevas</span>}
         </button>
         <button role="tab" aria-selected={tab === 'quotes'} className={tab === 'quotes' ? 'on' : ''} onClick={() => setTab('quotes')}>Cotizador</button>
+        <button role="tab" aria-selected={tab === 'tracking'} className={tab === 'tracking' ? 'on' : ''} onClick={() => setTab('tracking')}>
+          Seguimiento {pendingChanges > 0 && <span className="badge">{pendingChanges} cambios</span>}
+        </button>
       </div>
 
       {tab === 'projects' && (
@@ -224,6 +229,7 @@ function Panel({ session }: { session: Session }) {
       )}
 
       {tab === 'quotes' && <Quoter leads={leads} presetLead={presetLead} />}
+      <div hidden={tab !== 'tracking'}><Tracking onPending={setPendingChanges} /></div>
 
       {tab === 'leads' && (
         <ul className="admin-leads">

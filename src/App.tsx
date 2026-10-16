@@ -8,10 +8,11 @@ import NotFound from './pages/NotFound';
 
 const Admin = lazy(() => import('./pages/Admin'));
 const BriefPage = lazy(() => import('./pages/BriefPage'));
+const EngagementPage = lazy(() => import('./pages/EngagementPage'));
 
 export default function App() {
   const { pathname } = useLocation();
-  const isAdmin = pathname.startsWith('/admin') || pathname.startsWith('/cuestionario');
+  const isAdmin = pathname.startsWith('/admin') || pathname.startsWith('/cuestionario') || pathname.startsWith('/proyecto/');
   return (
     <>
       {!isAdmin && <Nav />}
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/proyectos/:slug" element={<ProjectPage />} />
             <Route path="/admin/*" element={<Admin />} />
             <Route path="/cuestionario/:token" element={<BriefPage />} />
+            <Route path="/proyecto/:token" element={<EngagementPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
